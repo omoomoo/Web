@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/app.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<canvas id="canvas" width="700" height="400"></canvas>
+		<script type="text/javascript">
+			$(function(){
+				var canvas = $('#canvas')[0];
+				var context = canvas.getContext('2d');
+				var mouse = jSeal.acquireMouse(canvas);
+				
+				var arrow = new Arrow();
+				arrow.x = canvas.width / 2;
+				arrow.y = canvas.height / 2;
+				arrow.vx = 0;
+				arrow.vy = 0;
+				arrow.spring = 0.002;
+				arrow.friction = 0.5;
+				(function drawFrame(){
+					window.requestAnimationFrame(drawFrame);
+					
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					
+					var dx = mouse.x - arrow.x;
+					var dy = mouse.y - arrow.y;
+					arrow.vx += dx * arrow.spring;
+					arrow.vy += dy * arrow.spring;
+
+					arrow.x += arrow.vx * arrow.friction;
+					arrow.y += arrow.vy * arrow.friction;
+					arrow.rotation = Math.atan2(dy, dx);
+					arrow.draw(context);
+				})();
+			});
+		</script>
+	</body>
+</html>
