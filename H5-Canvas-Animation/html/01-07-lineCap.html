@@ -18,14 +18,23 @@
 
 				context.lineWidth = 10;
 				context.strokeStyle = '#0086b3';
-				context.fillStyle = '#DD4A68';
-				context.moveTo(canvas.width / 2 -100, canvas.height / 2 - 50);
+				
+				context.beginPath();
+				context.lineCap = 'butt';
+				context.moveTo(canvas.width / 2 - 100, canvas.height / 2 - 50);
 				context.lineTo(canvas.width / 2 + 100, canvas.height / 2 - 50);
-				context.lineTo(canvas.width / 2 + 100, canvas.height / 2 + 50);
-				context.closePath();
 				context.stroke();
-				context.fill();
-
+				
+				context.beginPath();
+				context.lineCap = 'round';
+				context.moveTo(canvas.width / 2 - 100, canvas.height / 2);
+				context.lineTo(canvas.width / 2 + 100, canvas.height / 2);
+				context.stroke();
+				
+				context.beginPath();
+				context.lineCap = 'square';
+				context.moveTo(canvas.width / 2 - 100, canvas.height / 2 + 50);
+				context.lineTo(canvas.width / 2 + 100, canvas.height / 2 + 50);
 				context.stroke();
 			});
 		</script>
