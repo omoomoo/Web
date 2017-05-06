@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/app.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="700" height="400"></canvas>
+		<script type="text/javascript">
+			$(function() {
+				var canvas = $('#canvas')[0];
+				var ctx = canvas.getContext('2d');
+				
+				var ball = new Ball(20);
+				ball.x = canvas.widtd / 2;
+				ball.y =  canvas.height / 2;
+
+				(function drawFrame() {
+					window.requestAnimationFrame(drawFrame);
+					ctx.clearRect(0,0,canvas.width,canvas.height);
+					
+					ball.x += ball.speed;
+					
+					
+					if(ball.x - ball.radius <= 0) {
+						ball.x = ball.radius;
+						ball.speed *= -1;
+					}
+					if(ball.x + ball.radius >= canvas.width) {
+						ball.x = canvas.width - ball.radius;
+						ball.speed *= -1;
+					}
+					
+					ball.draw(ctx);
+				})();
+			});
+		</script>
+	</body>
+
+</html>

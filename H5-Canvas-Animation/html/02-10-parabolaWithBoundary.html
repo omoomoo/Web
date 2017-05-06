@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/app.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="700" height="400"></canvas>
+		<script type="text/javascript">
+			$(function() {
+				var canvas = $('#canvas')[0];
+				var ctx = canvas.getContext('2d');
+				var gravity = 0.5;
+				
+				var ball = new Ball(10);
+				ball.x = ball.radius;
+				ball.y =  canvas.height / 4;
+				ball.speedX = 10;
+				ball.speedY = 0;
+				ball.bounceFactor = -0.8;
+
+				(function drawFrame() {
+					window.requestAnimationFrame(drawFrame);
+					ctx.clearRect(0,0,canvas.width,canvas.height);
+					
+					ball.speedY += gravity;
+					ball.x += ball.speedX;
+					ball.y += ball.speedY;
+					
+					if(ball.x - ball.radius <= 0) {
+						ball.x = ball.radius;
+						ball.speedX *= ball.bounceFactor;
+					}
+					if(ball.x + ball.radius >= canvas.width) {
+						ball.x = canvas.width - ball.radius;
+						ball.speedX *= ball.bounceFactor;
+					}
+					if(ball.y + ball.radius >= canvas.height) {
+						ball.y = canvas.height - ball.radius;
+						ball.speedY *= ball.bounceFactor;
+					}
+					
+					
+					ball.draw(ctx);
+				})();
+			});
+		</script>
+	</body>
+
+</html>
