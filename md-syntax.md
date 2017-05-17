@@ -4,6 +4,8 @@
 1. fsfdf
     1. fsdfdf
     1. fsfdf
+    	1. fsdfdf
+    	1. fsfdf
 
 * **SVN的做法缺点：**
 	* SVN copy分支之后，其他人的改动对A不可见，需要要经过复杂的合并流程；
