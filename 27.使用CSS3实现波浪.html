@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				padding: 0;
+				margin: 0;
+				background-color: #CCC;
+			}
+			.container {
+				position: relative;
+				margin: 0 auto;
+				margin-top: 100px;
+				width: 500px;
+				height: 500px;
+				border-radius: 50%;
+				background-color: aqua;
+				overflow: hidden;
+			}
+			.wave {
+				position: absolute;
+				left: -250px;
+    			bottom: 150px;
+				width: 1000px;
+				height: 1000px;
+				background-color: white;
+				border-radius: 40%;
+				-webkit-animation: spin 5s infinite linear;
+			}
+			@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="wave"></div>
+		</div>
+	</body>
+</html>
