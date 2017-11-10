@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			.btn {
+				margin: 5px;
+				float: left;
+				width: 100px;
+				background-color: cornflowerblue;
+				text-align: center;
+				line-height: 150%;
+				color: white;
+			}
+			.btn:hover {
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn_green">
+		</div>
+		<div id="btn_blue">
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		class LikedButton {
+			constructor(props) {
+				this.props = props;
+            	this.liked = true;
+        	};
+			click() {
+				this.liked = !this.liked;
+				this.mount();
+			};
+			render() {
+				return `
+					<div class="btn liked" style="background-color:${this.props.bgColor}">${this.liked ? 'Liked' : 'Unliked'}</div>
+				`;
+			};
+			mount() {
+				var el = $(this.render().trim())[0];
+				el.addEventListener('click', this.click.bind(this), false);
+				
+				$(`#${this.props.id}`).html(el);
+			};
+		}
+		
+		new LikedButton({id: 'btn_green', bgColor: 'green'}).mount();
+		new LikedButton({id: 'btn_blue', bgColor: 'blue'}).mount();
+	</script>
+</html>

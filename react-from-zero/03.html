@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			.btn {
+				margin: 5px;
+				float: left;
+				width: 100px;
+				background-color: cornflowerblue;
+				text-align: center;
+				line-height: 150%;
+				color: white;
+			}
+			.btn:hover {
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="btns">
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		class LikeButton {
+			render() {
+				var elText = `
+					<div class="btn liked">Liked</div>
+				`;
+				
+				var liked = true;
+				var el = $(elText.trim());
+				el.click(function(e){
+					liked = !liked;
+					el.html(liked ? 'Liked' : 'Unliked');
+				});
+				
+				return el;
+			}
+		}
+		
+		$('.btns').append(new LikeButton().render());
+		
+	</script>
+</html>
